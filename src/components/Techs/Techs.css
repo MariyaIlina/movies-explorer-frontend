@@ -1,0 +1,125 @@
+.techs {
+  max-width: 1280px;
+  min-height: 625px;
+  background: #f5f5f5;
+  padding: 0 70px;
+}
+.techs__title {
+  padding-top: 100px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  margin: 0;
+  color: #000000;
+}
+.techs__subtitle {
+  max-width: 600px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin: 90px auto 26px;
+}
+.techs__text {
+  margin: 0 auto;
+  max-width: 460px;
+  min-height: 40px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #000000;
+}
+.techs__block {
+  display: flex;
+  flex-direction: row;
+  margin-top: 85px;
+  justify-content: center;
+}
+.techs__label {
+  width: 90px;
+  height: 60px;
+  background: #e8e8e8;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-right: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+  color: #000000;
+}
+.techs__label:last-child {
+  margin-right: 0;
+}
+@media screen and (max-width: 920px) {
+  .techs {
+    min-height: 567px;
+    padding: 0 50px;
+  }
+  .techs__title {
+    padding-top: 90px;
+  }
+  .techs__subtitle {
+    margin: 80px auto 22px;
+  }
+  .techs__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .techs__block {
+    margin-top: 65px;
+    flex-wrap: wrap;
+  }
+  .techs__label {
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .techs__title {
+    font-size: 18px;
+    line-height: 22px;
+    padding-top: 35px;
+  }
+  .techs {
+    background-color: white;
+    padding: 0 18px 0;
+  }
+  .techs__subtitle {
+    font-size: 30px;
+    line-height: 36px;
+    margin-top: 60px;
+  }
+  .techs__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .techs__label {
+    width: 84px;
+    height: 57px;
+    margin: 0;
+  }
+  .techs__block {
+    margin-top: 43px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+  }
+}

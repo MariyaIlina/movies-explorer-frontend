@@ -1,0 +1,18 @@
+.line {
+  max-width: 1140px;
+  border-top: 1px solid black;
+  height: 100%;
+  margin: 23px auto 0;
+}
+@media screen and (max-width: 920px) {
+  .line {
+    max-width: 668px;
+    margin-top: 22px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .line {
+    margin-top: 27px;
+   
+  }
+}
