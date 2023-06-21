@@ -38,6 +38,10 @@
   color: white;
   background: #2be080;
   border-radius: 3px;
+  cursor: pointer;
+}
+.login__button:hover {
+  opacity: 0.8;
 }
 .login__signin {
   font-size: 14px;
@@ -55,6 +59,9 @@
   padding-left: 6px;
   color: #2be080;
   text-decoration: none;
+}
+.login__link:hover {
+  opacity: 0.7;
 }
 .login__input {
   font-family: Inter;

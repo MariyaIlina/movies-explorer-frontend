@@ -24,7 +24,7 @@ function Portfolio() {
       <div className="portfolio__line"></div>
       <a
         className="portfolio__link"
-        href="https://mariyailina.github.io/mesto/src/index.html" target="_blank" rel="noopener noreferrer"
+        href="https://mariyailina.github.io/mesto/index.html" target="_blank" rel="noopener noreferrer"
       >
         <p className="portfolio__link-name">Одностраничное приложение</p>
         <img src={link} className="portfolio__img" alt="ссылка"></img>

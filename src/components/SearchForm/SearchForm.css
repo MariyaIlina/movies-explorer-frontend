@@ -45,6 +45,10 @@
   background-color: #fff;
   border-radius: 50%;
   padding-right: 8px;
+  cursor: pointer;
+}
+.searchForm__button:hover {
+  opacity: 0.8;
 }
 .searchForm__img {
   width: 34px;

@@ -78,7 +78,16 @@
   margin-top: 16px;
 }
 .moviesCard__like_active {
-  background: #ee3465;
+  background-image: url(../../images/like_active.svg);
+  width: 22px;
+  border: none;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  height: 19px;
+  padding: 0;
+  margin-top: 16px;
 }
 .moviesCard__remove {
   background-image: url(../../images/remove.svg);

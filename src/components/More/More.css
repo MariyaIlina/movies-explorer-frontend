@@ -21,6 +21,10 @@
   color: #000000;
   border: none;
   margin-top: 60px;
+  cursor: pointer;
+}
+.more__button:hover{
+  opacity: 0.8;
 }
 @media screen and (max-width: 920px) {
   .more {
