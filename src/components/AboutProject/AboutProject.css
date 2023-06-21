@@ -59,11 +59,11 @@
   color: #000000;
   margin: auto;
 }
-.aboutProject__tab__back {
+.aboutProject__tab-back {
   width: 228px;
   background: #2be080;
 }
-.aboutProject__tab__front {
+.aboutProject__tab-front {
   width: 912px;
   background: #f2f2f2;
 }
@@ -98,10 +98,10 @@
     font-size: 14px;
     line-height: 17px;
   }
-  .aboutProject__tab__back {
+  .aboutProject__tab-back {
     width: 140px;
   }
-  .aboutProject__tab__front {
+  .aboutProject__tab-front {
     width: 528px;
   }
 }
@@ -134,10 +134,10 @@
     font-size: 11px;
     line-height: 13px;
   }
-  .aboutProject__tab__back {
+  .aboutProject__tab-back {
     width: 100px;
   }
-  .aboutProject__tab__front {
+  .aboutProject__tab-front {
     width: 184px;
   }
   .aboutProject__label {

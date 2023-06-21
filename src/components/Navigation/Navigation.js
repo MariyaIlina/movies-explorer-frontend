@@ -3,19 +3,16 @@ import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
-    <div className="navigation__nav">
+    <div className="header__navigation">
       <div>
-        <Link className="navigation__link navigation__link_film" to="/movies">
+        <Link className="header__link header__link-film" to="/movies">
           Фильмы
         </Link>
-        <Link
-          className="navigation__link navigation__link_savefilm"
-          to="/saved-movies"
-        >
+        <Link className="header__link header__link-savefilm" to="/saved-movies">
           Сохраненные фильмы
         </Link>
       </div>
-      <Link className="navigation__button" to="/profile">
+      <Link className="header__button" to="/profile">
         Аккаунт
       </Link>
     </div>

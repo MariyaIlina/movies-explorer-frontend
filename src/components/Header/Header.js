@@ -16,7 +16,7 @@ function Header({ navStatus, profile, isMobile, onOpen }) {
     location.pathname === "/profile"
   ) {
     return (
-      <header className="header header__movies">
+      <header className="header header_movies">
         <div className="header__nav">
           <Link to="/" className="header__logo header__logo_none">
             <img src={logo} alt="логотип" className="header__logo2" />
@@ -32,7 +32,7 @@ function Header({ navStatus, profile, isMobile, onOpen }) {
     location.pathname === "/signin"
   ) {
     return (
-      <header className="header header__sign">
+      <header className="header header_sign">
         <div className="header__nav">
           <Link to="/" className="header__logo header__logo_sign">
             <img src={logo} alt="логотип" className="header__logo2" />
@@ -43,7 +43,7 @@ function Header({ navStatus, profile, isMobile, onOpen }) {
     );
   } else {
     return (
-      <header className="header header__main">
+      <header className="header header_main">
         <div className="header__nav">
           <Link to="/" className="header__logo">
             <img src={logo} alt="логотип" className="header__logo2" />

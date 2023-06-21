@@ -8,14 +8,14 @@ import AboutMe from "../AboutMe/AboutMe";
 import Footer from "../Footer/Footer";
 
 function Main (){
-    return(<>
+    return(<main>
         <Header />
         <Promo />
         <AboutProject />
         <Techs />
         <AboutMe />
         <Footer />
-        </>
+        </main>
     )
 }
 export default Main;

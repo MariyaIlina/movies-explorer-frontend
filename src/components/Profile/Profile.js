@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 // import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import Header from "../Header/Header";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 
@@ -36,7 +35,6 @@ function Profile(props) {
   }
   return (
     <div className="profile">
-      {/* <Header /> */}
       <p className="profile__entry">Привет, {name}!</p>
       <form onSubmit={handleSubmit} className="profile__form">
         <div className="profile__box">
@@ -58,7 +56,8 @@ function Profile(props) {
         </div>
         <div className="profile__line"></div>
         <div className="profile__box">
-          <label for="name" className="profile__label">E-mail
+          <label for="name" className="profile__label">
+            E-mail
           </label>
           <input
             className="profile__input"

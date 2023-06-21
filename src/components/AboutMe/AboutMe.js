@@ -21,7 +21,7 @@ function AboutMe() {
             Контур». После того, как прошёл курс по веб-разработке, начал
             заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
-          <Link className="aboutMe___link" to="https://github.com/">
+          <Link className="aboutMe__link" to="https://github.com/">
             Github
           </Link>
         </div>{" "}

@@ -24,7 +24,7 @@
   align-items: center;
   text-decoration: none;
 }
-.portfolio__link__name {
+.portfolio__link-name {
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -54,7 +54,7 @@
     min-height: 392px;
   }
 
-  .portfolio__link__name {
+  .portfolio__link-name {
     font-size: 28px;
     line-height: 50px;
   }
@@ -73,7 +73,7 @@
     line-height: 20px;
     margin-bottom: 40px;
   }
-  .portfolio__link__name {
+  .portfolio__link-name {
     font-size: 18px;
     line-height: 28px;
   }

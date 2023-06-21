@@ -5,11 +5,11 @@
   padding: 0 70px;
   background: #ffffff;
 }
-.header__movies {
+.header_movies {
   min-height: 74px;
   justify-content: space-between;
 }
-.header__sign {
+.header_sign {
   min-height: 38px;
   display: flex;
   flex-direction: row;
@@ -17,7 +17,7 @@
   max-width: 396px;
   margin: auto;
 }
-.header__main {
+.header_main {
   justify-content: center;
   margin: auto;
   min-height: 74px;
@@ -123,12 +123,12 @@
   .header__burger {
     display: block;
   }
-  .navigation__nav {
+  .header__navigation {
     display: none;
   }
 }
 @media screen and (max-width: 500px) {
-  .header__movies {
+  .header_movies {
     padding: 0 14px;
     position: relative;
     z-index: 0;
@@ -137,11 +137,11 @@
     width: 40px;
     height: 43px;
   }
-  .header__sign {
+  .header_sign {
     flex-direction: column;
     justify-content: center;
   }
-  .header__main {
+  .header_main {
     padding: 0 14px;
   }
   .header__link_register {

@@ -14,6 +14,7 @@ function SearchForm({ handleClick, handleChange }) {
             className="searchForm__input"
             placeholder="Фильм"
             onChange={handleChange}
+            required
           />
           <button className="searchForm__button" onClick={handleClick}>
             <img src={icon} className="searchForm__img" alt="поиск" />

@@ -6,29 +6,29 @@ function Portfolio() {
   return (
     <div className="portfolio">
       <h2 className="portfolio__title">Портфолио</h2>
-      <Link
+      <a
         className="portfolio__link"
-        to="https://github.com/MariyaIlina/how-to-learn"
+        href="https://mariyailina.github.io/how-to-learn/" target="_blank" rel="noopener noreferrer"
       >
-        <p className="portfolio__link__name">Статичный сайт</p>
+        <p className="portfolio__link-name">Статичный сайт</p>
         <img src={link} className="portfolio__img" alt="ссылка"></img>
-      </Link>
+      </a>
       <div className="portfolio__line"></div>
-      <Link
+      <a
         className="portfolio__link"
-        to="https://mariyailina.github.io/russian-travel/index.html"
+        href="https://mariyailina.github.io/russian-travel/index.html" target="_blank" rel="noopener noreferrer"
       >
-        <p className="portfolio__link__name">Адаптивный сайт</p>
+        <p className="portfolio__link-name">Адаптивный сайт</p>
         <img src={link} className="portfolio__img" alt="ссылка"></img>
-      </Link>
+      </a>
       <div className="portfolio__line"></div>
-      <Link
+      <a
         className="portfolio__link"
-        to="https://github.com/MariyaIlina/mesto.git"
+        href="https://mariyailina.github.io/mesto/src/index.html" target="_blank" rel="noopener noreferrer"
       >
-        <p className="portfolio__link__name">Одностраничное приложение</p>
+        <p className="portfolio__link-name">Одностраничное приложение</p>
         <img src={link} className="portfolio__img" alt="ссылка"></img>
-      </Link>
+      </a>
     </div>
   );
 }

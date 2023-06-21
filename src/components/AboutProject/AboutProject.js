@@ -26,10 +26,10 @@ function AboutProject() {
 
       <table>
         <tr>
-          <th className="aboutProject__tab aboutProject__tab__back">
+          <th className="aboutProject__tab aboutProject__tab-back">
             1 неделя
           </th>
-          <th className="aboutProject__tab aboutProject__tab__front">
+          <th className="aboutProject__tab aboutProject__tab-front">
             4 недели
           </th>
         </tr>

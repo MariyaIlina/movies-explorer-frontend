@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../Header/Header";
 import "./Login.css";
-import Input from "../Input/Input";
 
 export default function Login({ onLogin, isLoggedIn }) {
   const [userData, setUserData] = useState({
@@ -34,25 +33,34 @@ export default function Login({ onLogin, isLoggedIn }) {
   return (
     <div className="login">
       <Header />
-
       <form className="login__form" onSubmit={handleSubmit}>
         <p className="login__entry">Рады видеть!</p>
-        <Input
-          label="E-mail"
-          name="email"
-          value={userData.email}
-          type="email"
-          onChange={handleChange}
-          error="login-email-error"
-        />
-        <Input
-          label="Пароль"
-          name="password"
-          value={userData.password}
-          type="password"
-          onChange={handleChange}
-          error="login-password-error"
-        />
+        <label className="login__label">
+          {"E-mail"}
+          <input
+            className="login__input"
+            name={"email"}
+            value={userData.email}
+            type={"email"}
+            onChange={handleChange}
+          />
+          <p className="login__error">
+            <span id={"login-email-error"}></span>
+          </p>
+        </label>
+        <label className="login__label">
+          {"Пароль"}
+          <input
+            className="login__input"
+            name={"password"}
+            value={userData.password}
+            type={"password"}
+            onChange={handleChange}
+          />
+          <p className="login__error">
+            <span id={"login-password-error"}></span>
+          </p>
+        </label>
         <button type="submit" onSubmit={handleSubmit} className="login__button">
           Войти
         </button>
