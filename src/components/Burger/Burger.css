@@ -1,0 +1,121 @@
+.burger {
+  width: 520px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -520px;
+  display: none;
+  transition: all 1s ease;
+}
+.burger_is-opened {
+  right: 0;
+  display: block;
+}
+.burger__container {
+  height: 100vh;
+  display: flex;
+  justify-content: right;
+}
+.burger__container_is-opened .blur {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(2px);
+  position: absolute;
+  right: 100%;
+}
+
+.blur {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(2px);
+}
+.burger__links {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.burger__close {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  background-image: url("../../images/close.svg");
+  border: none;
+  background-color: white;
+  object-fit: contain;
+  right: 29px;
+  top: 29px;
+}
+
+.burger__link {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+  text-decoration: none;
+  margin-bottom: 28px;
+}
+.burger__acount {
+  width: 100px;
+  height: 32px;
+  border-radius: 20px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  background-color: #f9f9f9;
+  text-decoration: none;
+  justify-content: center;
+  position: absolute;
+  bottom: 90px;
+  left: 40%;
+}
+.burger__title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+  opacity: 0.59;
+  margin-bottom: 28px;
+  margin-top: 159px;
+}
+.burger__link_is-active {
+  border-bottom: 2px solid black;
+}
+@media screen and (max-width: 500px) {
+  .burger {
+    width: 320px;
+  }
+  .burger__title {
+    margin-top: 145px;
+    margin-bottom: 24px;
+  }
+  .burger__close {
+    right: 18px;
+    top: 13px;
+  }
+  .burger__link {
+    margin-bottom: 15px;
+    height: 30px;
+  }
+  .burger__links {
+    align-items: center;
+  }
+  .burger__acount {
+    bottom: 85px;
+    left: 35%;
+  }
+}

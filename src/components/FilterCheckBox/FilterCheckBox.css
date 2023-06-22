@@ -1,0 +1,70 @@
+.filterCheckBox {
+  display: flex;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000000;
+  padding-left: 30px;
+  background: #ffffff;
+  cursor: pointer;
+}
+.filterCheckBox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  appearance: none;
+}
+.filterCheckBox__inner {
+  display: inline-block;
+  position: relative;
+  padding: 10px;
+}
+.filterCheckBox__inner:before {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 36px;
+  height: 20px;
+  left: 100%;
+  top: 25%;
+  background: #e8e8e8;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+.filterCheckBox__inner::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 15px;
+  background-color: white;
+  left: 102%;
+  top: 31%;
+  transition: background-color 0.3s, left;
+}
+.filterCheckBox__input:checked + .filterCheckBox__inner::before {
+  background-color: #2be080;
+}
+.filterCheckBox__input:checked + .filterCheckBox__inner::after {
+  background-color: white;
+  left: 154px;
+}
+@media screen and (max-width: 920px) {
+  .filterCheckBox {
+    padding-left: 0;
+    padding-right: 45px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .filterCheckBox {
+    font-size: 11px;
+    line-height: 18px;
+  }
+  .filterCheckBox__input:checked + .filterCheckBox__inner::after {
+    left: 136px;
+  }
+}
