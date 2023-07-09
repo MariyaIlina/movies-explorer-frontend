@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../Header/Header";
 import "./Register.css";
+import Auth from "../../utils/auth";
+import HeaderSign from "../HeaderSign/HeaderSign";
 
-export default function Register(props) {
-  const { onRegister, isLoggedIn } = props;
+export default function Register({ isLoggedIn, register }) {
+  const navigate = useNavigate();
+  const auth = new Auth();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -19,19 +21,25 @@ export default function Register(props) {
     }));
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister(userData.name, userData.email, userData.password);
+    if (!userData.name || !userData.email || !userData.password) {
+      return console.log("!!!!!!");
+    }
+    register({
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+    });
+    console.log(userData);
   };
 
   if (isLoggedIn) {
-    return navigate("/");
+    return navigate("/movies");
   }
   return (
     <div className="register">
-      <Header />
+      <HeaderSign />
       <form onSubmit={handleSubmit} className="register__form">
         <p className="register__entry">Добро пожаловать!</p>
         <label className="register__label">

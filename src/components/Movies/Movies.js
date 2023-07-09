@@ -1,20 +1,22 @@
-import React, {useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import Preloader from "../Preloader/Preloader";
-import More from "../More/More";
 
-function Movies() { ;
-
+function Movies({
+  movies,
+  filterMovies,
+  setShortMovies,
+  handleMovieSave,
+  setSearchQuery,
+}) {
   return (
     <>
-      <SearchForm />
-      {/* <Preloader /> */}
-      <MoviesCardList />
-      <More />
-      {/* <Footer /> */}
+      <SearchForm
+        filterMovies={filterMovies}
+        setShortMovies={setShortMovies}
+        setSearchQuery={setSearchQuery}
+      />
+      <MoviesCardList movies={movies} handleMovieSave={handleMovieSave} />
     </>
   );
 }

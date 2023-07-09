@@ -1,21 +1,23 @@
 import React, { useContext, useState, useEffect } from "react";
-// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 
-function Profile(props) {
+function Profile({ onUpdateUser, logOut}) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  //   const currentUser = useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
+const [editingMode, setEditingMode] = useState(false);
 
-  //   useEffect(() => {
-  //     if (currentUser.currentUser.name !== undefined) {
-  //       setName(currentUser.currentUser.name);
-  //     }
-  //     if (currentUser.currentUser.email !== undefined) {
-  //       setDescription(currentUser.currentUser.email);
-  //     }
-  //   }, [currentUser, props.isOpen]);
+  useEffect(() => {
+    if (currentUser.name !== undefined) {
+      // console.log("CurrentUserContext=>", currentUser);
+      setName(currentUser.name);
+    }
+    if (currentUser.email !== undefined) {
+      setDescription(currentUser.email);
+    }
+  }, [currentUser]);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -28,10 +30,14 @@ function Profile(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onUpdateUser({
-      name,
-      email: description,
-    });
+    if (editingMode) {
+      onUpdateUser({
+        name,
+        email: description,
+      });
+    }
+  setEditingMode(!editingMode);
+
   }
   return (
     <div className="profile">
@@ -39,9 +45,7 @@ function Profile(props) {
       <form onSubmit={handleSubmit} className="profile__form">
         <div className="profile__box">
           {" "}
-          <label for="name" className="profile__label">
-            Имя
-          </label>
+          <label className="profile__label">Имя</label>
           <input
             className="profile__input"
             name="name"
@@ -52,13 +56,12 @@ function Profile(props) {
             id="profile-name"
             value={name}
             onChange={handleNameChange}
-          ></input>{" "}
+            disabled={!editingMode}
+          ></input>
         </div>
         <div className="profile__line"></div>
         <div className="profile__box">
-          <label for="name" className="profile__label">
-            E-mail
-          </label>
+          <label className="profile__label">E-mail</label>
           <input
             className="profile__input"
             name="email"
@@ -69,11 +72,28 @@ function Profile(props) {
             id="profile-email"
             value={description}
             onChange={handleDescriptionChange}
+            disabled={!editingMode}
           />
         </div>
+        {editingMode ? (
+          <>
+            <button type="submit" className="profile__save">
+              Сохранить
+            </button>
+          </>
+        ) : (
+          <button
+            className="profile__button"
+            onClick={() => setEditingMode(true)}
+          >
+            Редактировать
+          </button>
+        )}
+
+        <Link className="profile__logout" onClick={logOut} to="/">
+          Выйти из аккаунта
+        </Link>
       </form>
-      <button className="profile__button">Редактировать</button>
-      <Link className="profile__logout">Выйти из аккаунта</Link>
     </div>
   );
 }

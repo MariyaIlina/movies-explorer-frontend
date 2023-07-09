@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Header from "../Header/Header";
+import HeaderSign from "../HeaderSign/HeaderSign";
 import "./Login.css";
 
-export default function Login({ onLogin, isLoggedIn }) {
+export default function Login({ login, isLoggedIn }) {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -24,15 +24,21 @@ export default function Login({ onLogin, isLoggedIn }) {
     if (!userData.email || !userData.password) {
       return;
     }
-    onLogin(userData.email, userData.password);
+    login({
+      email: userData.email,
+      password: userData.password,
+    });
   };
 
-  if (isLoggedIn) {
-    return navigate("/");
-  }
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/movies");
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <div className="login">
-      <Header />
+      <HeaderSign />
       <form className="login__form" onSubmit={handleSubmit}>
         <p className="login__entry">Рады видеть!</p>
         <label className="login__label">

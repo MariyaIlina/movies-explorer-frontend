@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FilterCheckBox.css";
 
-function FilterCheckBox() {
+function FilterCheckBox({ movies, setShortMovies, filterMovies }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleChange = () => {
     setIsChecked(!isChecked);
+    setShortMovies(isChecked);
+    filterMovies()
   };
 
   return (
@@ -15,9 +17,11 @@ function FilterCheckBox() {
           className="filterCheckBox__input"
           type="checkbox"
           id="checkbox"
-          checked={isChecked}
-          onChange={handleChange}
-        />{" "}
+          onInput={(e=>{
+            setShortMovies(e.target.checked)
+            filterMovies(e.target.checked);
+          })}
+        />
         <span className="filterCheckBox__inner">Короткометражки</span>
       </label>
     </>

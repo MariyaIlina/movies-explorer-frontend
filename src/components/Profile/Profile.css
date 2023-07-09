@@ -62,9 +62,9 @@
   display: flex;
   background-color: white;
   border: none;
-  margin: 215px auto 13px;
   padding: 0;
   cursor: pointer;
+  margin: 215px auto 13px;
 }
 .profile__logout {
   font-weight: 500;
@@ -86,6 +86,17 @@
   outline: none;
   background-color: white;
 }
+.profile__save{
+margin: 0;
+  padding: 0;
+  height: 45px;
+  border: none;
+  color: white;
+  background: #2be080;
+  border-radius: 3px;
+  margin: 215px 0 13px;
+  cursor: pointer;
+}
 @media screen and (max-width: 920px) {
   .profile {
     height: 950px;
@@ -98,12 +109,15 @@
     margin-top: 96px;
   }
   .profile__button {
-    margin-top: 210px;
+   
     margin-bottom: 12px;
   }
   .profile__input {
     font-size: 11px;
     line-height: 13px;
+  }
+  .profile__save{
+     margin-top: 210px;
   }
 }
 @media screen and (max-width: 500px) {

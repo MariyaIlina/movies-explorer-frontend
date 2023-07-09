@@ -1,11 +1,42 @@
 import React, { useState } from "react";
 import "./MoviesCard.css";
 
-function MoviesCard({ title, time, src, alt, cardButton }) {
+function MoviesCard({
+  title,
+  time,
+  src,
+  alt,
+  cardButton,
+  handleMovieSave,
+  nameRU,
+  nameEN,
+  director,
+  country,
+  key,
+  year,
+  thumbnail,
+  description,
+}) {
   const [isActive, setIsActive] = useState(false);
 
   const handleLikeClick = () => {
     setIsActive((prevState) => !prevState);
+    handleMovieSave({
+      title,
+      time,
+      src,
+      alt,
+      cardButton,
+      handleMovieSave,
+      nameRU,
+      nameEN,
+      director,
+      country,
+      key,
+      year,
+      thumbnail,
+      description,
+    }, localStorage.getItem('token'));
   };
 
   return (
@@ -16,7 +47,7 @@ function MoviesCard({ title, time, src, alt, cardButton }) {
         <button
           className={`${cardButton}${isActive ? "_active" : ""}`}
           type="button"
-          onClick={handleLikeClick}
+          onClick={() => handleLikeClick()}
         ></button>
       </div>
       <p className="moviesCard__time">{time}</p>
