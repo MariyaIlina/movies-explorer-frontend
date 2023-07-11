@@ -2,21 +2,15 @@ import React, { useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies({
-  movies,
-  filterMovies,
-  setShortMovies,
-  handleMovieSave,
-  setSearchQuery,
-}) {
+function Movies({ movies, filterMovies, moviesDuration, handleMovieSave }) {
   return (
     <>
       <SearchForm
         filterMovies={filterMovies}
-        setShortMovies={setShortMovies}
-        setSearchQuery={setSearchQuery}
+        moviesDuration={moviesDuration}
+        
       />
-      <MoviesCardList movies={movies} handleMovieSave={handleMovieSave} />
+      <MoviesCardList movies={movies} handleMovieSave={handleMovieSave}/>
     </>
   );
 }

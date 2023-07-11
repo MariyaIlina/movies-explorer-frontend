@@ -10,18 +10,19 @@ class MoviesApi {
     return Promise.reject(res.status);
   };
 
-  getMovies (token){
+  getMovies (){
   return fetch(this.MOVIES_BASE_URL, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    
     },
   }).then((res) => this.checkResponse(res));
 }
 }
+  const moviesApi = new MoviesApi();
 
-export default MoviesApi;
+export default moviesApi;
 
 // const MOVIES_BASE_URL = " https://api.nomoreparties.co/beatfilm-movies";
 

@@ -1,7 +1,12 @@
 class MainApi {
-  constructor() {
+  constructor(options) {
     // this.MAIN_URL = "https://api.praktikum.movies.nomoredomains.rocks";
-    this.MAIN_URL = "http://localhost:3000";
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+    this._token = options.token;
+
+    // this.MAIN_URL = "http://localhost:3000";
+    // this.BASE_URL = "https://api.nomoreparties.co";
   }
 
   checkResponse = (res) => {
@@ -31,27 +36,27 @@ class MainApi {
       },
     }).then(this._checkResponse);
   };
-  updateUser(userName, userEmail, token) {
-    return fetch(this.MAIN_URL + "/user/me", {
-      //?
+
+  updateUser = (data) => {
+    return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
-        name: userName,
-        email: userEmail,
+        name: data.name,
+        email: data.email,
       }),
     }).then((res) => this.checkResponse(res));
-  }
+  };
 
-  saveMovie(movie, token) {
+  saveMovie=(movie)=> {
     return fetch(this.MAIN_URL + "/movies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+       " Authorization": `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         country: movie.country,
@@ -59,9 +64,9 @@ class MainApi {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: movie.image.url,
+        image: `${this.BASE_URL}${movie.image.url}`,
         trailerLink: movie.trailerLink,
-        thumbnail: movie.image.formats.thumbnail.url,
+        thumbnail: `${this.BASE_URL}${movie.image.formats.thumbnail.url}`,
         movieId: movie.id,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
@@ -70,7 +75,7 @@ class MainApi {
   }
 
   deleteMovie(movieId, token) {
-    return fetch(this.MAIN_URL + "/movies/:id", {
+    return fetch(`this.MAIN_URL + "/movies" + /${movieId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +85,7 @@ class MainApi {
   }
 
   getSavedMovies(token) {
-    return fetch(this.MAIN_URL + "movies", {
+    return fetch(this.MAIN_URL + "/movies", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -89,5 +94,8 @@ class MainApi {
     }).then((res) => this.checkResponse(res));
   }
 }
+const mainApi = new MainApi({
+  baseUrl: "http://localhost:3001",
+});
 
-export default MainApi;
+export default mainApi;

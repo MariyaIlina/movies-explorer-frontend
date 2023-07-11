@@ -37,14 +37,7 @@ function formatTime(minutes) {
   return `${hours}ч ${mins < 10 ? "0" : ""}${mins} м`;
 }
 
-function MoviesCardList({
-  movies,
-  isLoading,
-  isError,
-  handleMovieSave,
-  country,
-  director,
-}) {
+function MoviesCardList({ movies, isLoading, isError, handleMovieSave, saveMovies }) {
   const location = useLocation();
   const [visibleCards, setVisibleCards] = useState(
     DEVICE_PARAMS.desktop.cards.total
@@ -92,35 +85,61 @@ function MoviesCardList({
         </p>
       ) : (
         <>
-          <div className="moviesCardList">
-            {movies.length > 0 ? (
-              movies
-                .slice(0, visibleCards)
-                .map((movie) => (
-                  <MoviesCard
-                    handleMovieSave={handleMovieSave}
-                    country={movie.country}
-                    director={movie.director}
-                    key={movie.id}
-                    year={movie.year}
-                    // thumbnail={movie.formats.thumbnail}
-                    description={movie.description}
-                    title={movie.nameRU}
-              
-                    time={formatTime(movie.duration)}
-                    src={`https://api.nomoreparties.co${movie.image.url}`}
-                    alt={movie.image.name}
-                    cardButton={
-                      location.pathname === "/movies"
-                        ? "moviesCard__like"
-                        : "moviesCard__remove"
-                    }
-                  />
-                ))
+          {location.pathname ===
+            "/movies" ? (
+              <>
+                <div className="moviesCardList">
+                  {movies.length > 0 ? (
+                    movies
+                      .slice(0, visibleCards)
+                      .map((movie) => (
+                        <MoviesCard
+                          handleMovieSave={handleMovieSave}
+                          key={movie.id}
+                          title={movie.nameRU}
+                          time={formatTime(movie.duration)}
+                          src={`https://api.nomoreparties.co${movie.image.url}`}
+                          alt={movie.image.name}
+                          cardButton={
+                            location.pathname === "/movies"
+                              ? "moviesCard__like"
+                              : "moviesCard__remove"
+                          }
+                        />
+                      ))
+                  ) : (
+                    <p>Ничего не найдено</p>
+                  )}
+                </div>
+              </>
             ) : (
-              <p>Ничего не найдено</p>
+              <>
+                <div className="moviesCardList">
+                  {saveMovies.length > 0 ? (
+                    movies
+                      .slice(0, visibleCards)
+                      .map((movie) => (
+                        <MoviesCard
+                          handleMovieSave={handleMovieSave}
+                          key={movie.id}
+                          title={movie.nameRU}
+                          time={formatTime(movie.duration)}
+                          src={`https://api.nomoreparties.co${movie.image.url}`}
+                          alt={movie.image.name}
+                          cardButton={
+                            location.pathname === "/movies"
+                              ? "moviesCard__like"
+                              : "moviesCard__remove"
+                          }
+                        />
+                      ))
+                  ) : (
+                    <p>Ничего не найдено</p>
+                  )}
+                </div>
+              </>
             )}
-          </div>
+
           {movies.length > visibleCards && (
             <More handleLoadMore={handleLoadMore} />
           )}

@@ -12,7 +12,7 @@ const MoviesPage = ({
   isLoggedIn,
   movies,
   filterMovies,
- setShortMovies,
+  setShortMovies,
   handleMovieSave,
   setSearchQuery,
 }) => {
