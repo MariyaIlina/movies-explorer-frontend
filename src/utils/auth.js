@@ -1,6 +1,6 @@
 class Auth {
   constructor() {
-    this.BASE_URL = "http://localhost:3000";
+    this.BASE_URL = "http://localhost:3001";
   }
 
   checkResponse(res) {

@@ -10,6 +10,7 @@ function Movies({
   isShortMovies,
   shortMovies,
   isLoading,
+  handleMovieDelete,
 }) {
   return (
     <>
@@ -21,6 +22,7 @@ function Movies({
         movies={isShortMovies ? shortMovies : movies}
         handleMovieSave={handleMovieSave}
         isLoading={isLoading}
+        handleMovieDelete={handleMovieDelete}
       />
     </>
   );

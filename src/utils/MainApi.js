@@ -73,25 +73,42 @@ class MainApi {
     }).then((res) => this.checkResponse(res));
   };
 
-  deleteMovie=(movieId)=> {
-    return fetch(`this.MAIN_URL + "/movies" + /${movieId}`, {
+  deleteMovie = (movieId) => {
+    console.log("deleteMovie", movieId);
+    console.log("deleteMovie all", this.MAIN_URL + "/movies/" + movieId);
+    console.log("deleteMovie token", localStorage.getItem("token"));
+
+    return fetch(this.MAIN_URL + "/movies/" + movieId, {
       method: "DELETE",
       headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
-        " Authorization": `Bearer ${localStorage.getItem("token")}`,
       },
-    }).then((res) => this.checkResponse(res));
-  }
+    }).then((res) => {
+      console.log("deleteMovie then", res);
+      this.checkResponse(res);
+    });
+    // return fetch(this.MAIN_URL + "/movies/" + movieId, {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     " Authorization": `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // }).then((res) => {
+    //   console.log("deleteMovie then", res);
+    //   this.checkResponse(res);
+    // });
+  };
 
-  getSavedMovies=(token) =>{
+  getSavedMovies = (token) => {
     return fetch(this.MAIN_URL + "/movies", {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => this.checkResponse(res));
-  }
+  };
 }
 const mainApi = new MainApi({
   baseUrl: "http://localhost:3001",

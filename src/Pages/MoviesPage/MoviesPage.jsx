@@ -18,6 +18,7 @@ const MoviesPage = ({
   setIsShortMovies,
   isShortMovies,
   isLoading,
+  handleMovieDelete,
 }) => {
   return (
     <>
@@ -31,6 +32,7 @@ const MoviesPage = ({
         setSearchQuery={setSearchQuery}
         isShortMovies={isShortMovies}
         isLoading={isLoading}
+        handleMovieDelete={handleMovieDelete}
       />
       <Footer />
       <Burger isOpen={menuActive} onClose={toggleMenu} />

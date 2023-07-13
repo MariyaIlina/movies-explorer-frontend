@@ -53,7 +53,24 @@ function App() {
           );
 
           if (moviesFromStorage.length && shortMoviesFromStorage.length) {
-            setFilteredMovies(moviesFromStorage);
+            if (savedMovies?.length) {
+              const newMuvies = moviesFromStorage.map((item) => {
+                const newItem = savedMovies.find(
+                  (saved) => saved.movieId === item.id
+                );
+                if (newItem) {
+                  // console.log('newItem', newItem);
+                  item._id = newItem._id;
+                  // console.log('newItem item', item);
+                }
+
+                return item;
+              });
+              setFilteredMovies(newMuvies);
+            } else {
+              setFilteredMovies(moviesFromStorage);
+            }
+
             setShortMovies(shortMoviesFromStorage);
           }
           setIsLoading(false);
@@ -64,7 +81,7 @@ function App() {
           console.log(err);
         });
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, navigate, savedMovies]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -185,7 +202,17 @@ function App() {
         setSavedMovies([savedMovie, ...savedMovies]);
         const savedMoviesStringify = JSON.stringify(savedMovies);
         localStorage.setItem("savedMovies", savedMoviesStringify);
-        console.log("App.savedMovie=>", savedMovie.movie._id);
+
+        const newFilteredMovies = filteredMovies.map((item) => {
+          if (savedMovie.movie.movieId === item.id) {
+            return { ...item, _id: savedMovie.movie._id };
+          }
+          return item;
+        });
+        setFilteredMovies(newFilteredMovies);
+
+        // console.log("App.savedMovie=>", savedMovie);
+        console.log("App.savedMovie id=>", savedMovie.movie._id);
         console.log(`Карточка сохранена.`);
       })
       .catch((err) => {
@@ -194,14 +221,35 @@ function App() {
   }
 
   function handleMovieDelete(movie) {
+    console.log("handleMovieDelete movie", movie);
+
     const movieId = movie._id;
-    console.log(movieId);
+    // console.log("handleMovieDelete", movieId);
     mainApi
       .deleteMovie(movieId)
       .then(() => {
-        setSavedMovies((savedMovies) =>
-          savedMovies.filter((savedMovie) => savedMovie.movie._id !== movieId)
+        setSavedMovies(
+          (savedMovies) => {
+            console.log("savedMovies", savedMovies);
+            return savedMovies.filter(
+              (savedMovie) => savedMovie._id !== movieId
+            );
+          }
+          //
         );
+        // console.log('newFilteredMovies');
+        const newFilteredMovies = filteredMovies.map((item) => {
+
+          if (movieId === item._id) {
+            console.log('movieId === ', movieId, item._id);
+            console.log('movieId === item.id');
+            delete item._id;
+            console.log('movieId === item', item);
+            return {...item};
+          }
+          return item;
+        })
+        setFilteredMovies(newFilteredMovies);
       })
       .catch((err) => {
         console.log("err=>", err);

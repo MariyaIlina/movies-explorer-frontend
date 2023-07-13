@@ -44,6 +44,7 @@ function MoviesCardList({
   savedMovies,
   handleMovieDelete,
 }) {
+  // console.log('MoviesCardList handleMovieDelete', handleMovieDelete);
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -132,7 +133,7 @@ function MoviesCardList({
                   {savedMovies.slice(0, visibleCards).map((movie) => (
                     <MoviesCard
                       handleMovieDelete={handleMovieDelete}
-                      key={movie.id}
+                      key={movie._id}
                       savedMovies={savedMovies}
                       movie={movie}
                       trailerLink={movie.trailerLink}
