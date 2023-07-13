@@ -40,6 +40,15 @@
   border-radius: 3px;
   cursor: pointer;
 }
+.login__button-disabled {
+  background: E5E5E5;
+  color: C2C2C2;
+  margin: 200px 0 16px;
+  padding: 0;
+  height: 45px;
+  border: none;
+  border-radius: 3px;
+}
 .login__button:hover {
   opacity: 0.8;
 }

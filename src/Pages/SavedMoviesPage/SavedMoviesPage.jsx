@@ -10,9 +10,12 @@ const SavedMoviesPage = ({
   menuActive,
   toggleMenu,
   isLoggedIn,
-  filterMovies,
   movies,
-  moviesDuration
+  savedMovies,
+  setIsShortMovies,
+  isShortMovies,
+  filterMovies,
+  handleMovieDelete,
 }) => {
   // const navigate = useNavigate();
   // useEffect(() => {
@@ -26,8 +29,11 @@ const SavedMoviesPage = ({
       <HeaderMain isLoggedIn={isLoggedIn} onOpen={handleClick} />
       <SavedMovies
         movies={movies}
+        setIsShortMovies={setIsShortMovies}
+        isShortMovies={isShortMovies}
         filterMovies={filterMovies}
-        moviesDuration={moviesDuration}
+        handleMovieDelete={handleMovieDelete}
+        savedMovies={savedMovies}
       />
       <Footer />
       <Burger isOpen={menuActive} onClose={toggleMenu} />

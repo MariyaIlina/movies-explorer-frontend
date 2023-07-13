@@ -2,15 +2,26 @@ import React, { useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies({ movies, filterMovies, moviesDuration, handleMovieSave }) {
+function Movies({
+  movies,
+  filterMovies,
+  handleMovieSave,
+  setIsShortMovies,
+  isShortMovies,
+  shortMovies,
+  isLoading,
+}) {
   return (
     <>
       <SearchForm
         filterMovies={filterMovies}
-        moviesDuration={moviesDuration}
-        
+        setIsShortMovies={setIsShortMovies}
       />
-      <MoviesCardList movies={movies} handleMovieSave={handleMovieSave}/>
+      <MoviesCardList
+        movies={isShortMovies ? shortMovies : movies}
+        handleMovieSave={handleMovieSave}
+        isLoading={isLoading}
+      />
     </>
   );
 }

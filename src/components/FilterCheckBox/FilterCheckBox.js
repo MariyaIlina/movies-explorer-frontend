@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./FilterCheckBox.css";
-import {filterShortMovies} from "../../utils/Filters";
 
-function FilterCheckBox({movies}) {
+function FilterCheckBox({ setIsShortMovies }) {
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    const checkboxStatus = localStorage.getItem("isShortMovies");
+    if (checkboxStatus) {
+      setIsChecked(checkboxStatus === "true" ? true : false);
+    }
+  }, []);
 
   const handleChange = () => {
     setIsChecked(!isChecked);
+    setIsShortMovies(!isChecked);
+    localStorage.setItem("isShortMovies", !isChecked);
   };
-  useEffect(() => {
-    if (isChecked) {
-      filterShortMovies(movies);
-    }
-  }, [isChecked, filterShortMovies]);
-
 
   return (
     <>

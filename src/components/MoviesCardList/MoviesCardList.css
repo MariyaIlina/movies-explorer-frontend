@@ -8,6 +8,12 @@
   justify-content: center;
   background: #ffffff;
 }
+.moviesCardList__notFound {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 50px auto;
+}
 @media screen and (max-width: 920px) {
   .moviesCardList {
     grid-template-columns: repeat(auto-fill, 339px);

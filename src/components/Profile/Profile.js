@@ -7,17 +7,18 @@ function Profile({ onUpdateUser, logOut}) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const currentUser = useContext(CurrentUserContext);
+  const [currentUserData, setCurrentUserData] = useState(currentUser.currentUser)
 const [editingMode, setEditingMode] = useState(false);
 
   useEffect(() => {
-    if (currentUser.name !== undefined) {
-      // console.log("CurrentUserContext=>", currentUser);
-      setName(currentUser.name);
+    if (currentUserData.name !== undefined) {
+  
+      setName(currentUserData.name);
     }
-    if (currentUser.email !== undefined) {
-      setDescription(currentUser.email);
+    if (currentUserData.email !== undefined) {
+      setDescription(currentUserData.email);
     }
-  }, [currentUser]);
+  }, [currentUserData]);
 
   function handleNameChange(event) {
     setName(event.target.value);

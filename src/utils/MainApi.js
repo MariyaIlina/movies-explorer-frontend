@@ -4,9 +4,8 @@ class MainApi {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
     this._token = options.token;
-
-    // this.MAIN_URL = "http://localhost:3000";
-    // this.BASE_URL = "https://api.nomoreparties.co";
+    this.MAIN_URL = "http://localhost:3001";
+    this.BASE_URL = "https://api.nomoreparties.co";
   }
 
   checkResponse = (res) => {
@@ -29,10 +28,10 @@ class MainApi {
   //   }).then((res)=> this.checkResponse(res))
 
   // }
-  getUserInfo = () => {
+  getUserInfo = (token) => {
     return fetch(this._baseUrl + "/users/me", {
       headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
+        authorization: `Bearer ${token}`,
       },
     }).then(this._checkResponse);
   };
@@ -42,7 +41,7 @@ class MainApi {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         name: data.name,
@@ -51,12 +50,12 @@ class MainApi {
     }).then((res) => this.checkResponse(res));
   };
 
-  saveMovie=(movie)=> {
+  saveMovie = (movie) => {
     return fetch(this.MAIN_URL + "/movies", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-       " Authorization": `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         country: movie.country,
@@ -64,7 +63,7 @@ class MainApi {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: `${this.BASE_URL}${movie.image.url}`,
+        image: this.BASE_URL + movie.image.url,
         trailerLink: movie.trailerLink,
         thumbnail: `${this.BASE_URL}${movie.image.formats.thumbnail.url}`,
         movieId: movie.id,
@@ -72,23 +71,23 @@ class MainApi {
         nameEN: movie.nameEN,
       }),
     }).then((res) => this.checkResponse(res));
-  }
+  };
 
-  deleteMovie(movieId, token) {
+  deleteMovie=(movieId)=> {
     return fetch(`this.MAIN_URL + "/movies" + /${movieId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        " Authorization": `Bearer ${token}`,
+        " Authorization": `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => this.checkResponse(res));
   }
 
-  getSavedMovies(token) {
+  getSavedMovies=(token) =>{
     return fetch(this.MAIN_URL + "/movies", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then((res) => this.checkResponse(res));

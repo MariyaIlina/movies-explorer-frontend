@@ -2,33 +2,23 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import HeaderSign from "../HeaderSign/HeaderSign";
 import "./Login.css";
+import { useFormWithValidation } from "../Validate/Validate";
 
 export default function Login({ login, isLoggedIn }) {
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
+    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setUserData((userData) => ({
-      ...userData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!userData.email || !userData.password) {
-      return;
-    }
-    login({
-      email: userData.email,
-      password: userData.password,
-    });
-  };
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      if (!isValid) {
+        return;
+      }
+      login({
+        email: values.email,
+        password: values.password,
+      });
+    }; 
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -46,28 +36,39 @@ export default function Login({ login, isLoggedIn }) {
           <input
             className="login__input"
             name={"email"}
-            value={userData.email}
+            value={values.email || ""}
             type={"email"}
             onChange={handleChange}
           />
-          <p className="login__error">
+          {errors.email && <span className="error">{errors.email}</span>}
+          {/* <p className="login__error">
             <span id={"login-email-error"}></span>
-          </p>
+          </p> */}
         </label>
         <label className="login__label">
           {"Пароль"}
           <input
             className="login__input"
             name={"password"}
-            value={userData.password}
+            value={values.password || ""}
             type={"password"}
             onChange={handleChange}
           />
-          <p className="login__error">
+          {errors.password && (
+            <span className="login__error">{errors.password}</span>
+          )}
+
+          {/* <p className="login__error">
             <span id={"login-password-error"}></span>
-          </p>
+          </p> */}
         </label>
-        <button type="submit" onSubmit={handleSubmit} className="login__button">
+        <p className="error-message">{errors.login || errors.password}</p>
+        <button
+          type="submit"
+          disabled={!isValid}
+          className={isValid ? "login__button" : "login__button-disabled"}
+          onSubmit={handleSubmit}
+        >
           Войти
         </button>
       </form>

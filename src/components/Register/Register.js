@@ -35,8 +35,9 @@ export default function Register({ isLoggedIn, register }) {
   };
 
   if (isLoggedIn) {
-    return navigate("/movies");
+    navigate("/movies");
   }
+
   return (
     <div className="register">
       <HeaderSign />

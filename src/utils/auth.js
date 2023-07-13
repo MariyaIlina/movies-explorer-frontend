@@ -1,6 +1,6 @@
 class Auth {
   constructor() {
-    this.BASE_URL = "http://localhost:3001";
+    this.BASE_URL = "http://localhost:3000";
   }
 
   checkResponse(res) {
@@ -29,7 +29,7 @@ class Auth {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
-    }).then((res) => this.checkResponse(res))
+    }).then((res) => this.checkResponse(res));
   }
 
   checkToken(token) {

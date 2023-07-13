@@ -7,21 +7,13 @@ function Navigation() {
     <div className="header__navigation">
       <div>
         <Link
-          className={`header__link ${
-            location.pathname === "/movies"
-              ? "header__link-film"
-              : "header__link-savefilm"
-          }`}
+          className="header__link header__link-film"
           to="/movies"
         >
           Фильмы
         </Link>
-        <Link
-          className={`header__link ${
-            location.pathname === "/saved-movies"
-              ? "header__link-film"
-              : "header__link-savefilm"
-          }`}
+       
+        <Link className="header__link header__link-savefilm"
           to="/saved-movies"
         >
           Сохраненные фильмы
