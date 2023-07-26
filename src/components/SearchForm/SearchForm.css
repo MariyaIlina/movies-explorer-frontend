@@ -22,6 +22,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
 .searchForm__input {
@@ -64,6 +65,17 @@
   opacity: 0.2;
   height: 100%;
   margin-bottom: 10px;
+}
+.searchForm__error {
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  color: red;
+  
 }
 @media screen and (max-width: 920px) {
   .searchForm__box {

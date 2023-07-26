@@ -15,6 +15,7 @@ function Burger({ active, setActive, isOpen, onClose }) {
           <button className="burger__close" onClick={onClose}></button>
           <h1 className="burger__title">Главная</h1>
           <Link
+          onClick={onClose}
             className={`burger__link ${
               location.pathname === "/movies" ? "burger__link_is-active" : ""
             }`}
@@ -23,6 +24,7 @@ function Burger({ active, setActive, isOpen, onClose }) {
             Фильмы
           </Link>
           <Link
+          onClick={onClose}
             className={`burger__link ${
               location.pathname === "/saved-movies"
                 ? "burger__link_is-active"
@@ -33,7 +35,7 @@ function Burger({ active, setActive, isOpen, onClose }) {
             Сохраненные фильмы
           </Link>
         </div>
-        <Link className="burger__acount" to="/profile">
+        <Link onClick={onClose} className="burger__acount" to="/profile">
           Аккаунт
         </Link>
         <div className="blur" />

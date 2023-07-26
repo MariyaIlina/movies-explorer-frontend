@@ -4,10 +4,9 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  text-align: center;
   color: #000000;
   border-radius: 2px;
-  min-height: 626px;
+  /* min-height: 626px; */
 }
 .profile__entry {
   padding-top: 75px;
@@ -23,6 +22,7 @@
   justify-content: center;
   max-width: 410px;
   margin: 121px auto 0;
+  height: 329px;
 }
 .profile__label {
   font-weight: 400;
@@ -43,6 +43,20 @@
   color: 000;
   text-align: end;
 }
+.profile__input-error {
+  color: #ee3465;
+}
+.profile__input_error {
+  font-weight: 400;
+  font-size: 10px;
+  color: #ee3465;
+  margin: 0;
+  line-height: 1;
+  padding-top: 0;
+  position: relative;
+  display: block;
+  align-items: center;
+}
 
 .profile__box {
   display: flex;
@@ -54,7 +68,15 @@
   height: 100%;
   margin: 15px 0 15px;
 }
-
+.profile__message {
+  position: absolute;
+  top: 530px;
+  color: #ee3465;
+  transform: translateX(-50%);
+  left: 50%;
+  font-weight: 500;
+  font-size: 13px;
+}
 .profile__button {
   font-weight: 400;
   font-size: 13px;
@@ -75,21 +97,27 @@
   text-decoration: none;
   cursor: pointer;
 }
-.profile__button:hover{
+.profile__button:hover {
   opacity: 0.8;
 }
-.profile__logout:hover{
+.profile__logout:hover {
   opacity: 0.8;
 }
 .profile__input:focus {
-  /* border-bottom: 2px solid #2be080; */
   outline: none;
   background-color: white;
 }
-.profile__save{
-margin: 0;
+.profile__input-successfully {
+  position: absolute;
+  top: 500px;
+  color: #13b323;
+  transform: translateX(-50%);
+  left: 50%;
+}
+.profile__save {
+  margin: 0;
   padding: 0;
-  height: 45px;
+  min-height: 45px;
   border: none;
   color: white;
   background: #2be080;
@@ -97,10 +125,13 @@ margin: 0;
   margin: 215px 0 13px;
   cursor: pointer;
 }
+.profile__save:disabled {
+  background: #e5e5e5;
+  color: #c2c2c2;
+}
 @media screen and (max-width: 920px) {
   .profile {
     height: 950px;
-    
   }
   .profile__entry {
     padding-top: 236px;
@@ -109,15 +140,14 @@ margin: 0;
     margin-top: 96px;
   }
   .profile__button {
-   
     margin-bottom: 12px;
   }
   .profile__input {
     font-size: 11px;
     line-height: 13px;
   }
-  .profile__save{
-     margin-top: 210px;
+  .profile__save {
+    margin-top: 210px;
   }
 }
 @media screen and (max-width: 500px) {

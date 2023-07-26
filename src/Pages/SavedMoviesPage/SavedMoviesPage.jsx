@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Footer from "../../components/Footer/Footer";
 import Burger from "../../components/Burger/Burger";
-// import { useNavigate } from "react-router-dom";
 import SavedMovies from "../../components/SavedMovies/SavedMovies";
 import HeaderMain from "../../components/HeaderMain/HeaderMain";
 
@@ -17,16 +16,11 @@ const SavedMoviesPage = ({
   filterMovies,
   handleMovieDelete,
 }) => {
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     navigate("/");
-  //   }
-  // }, [isLoggedIn, navigate]);
+
 
   return (
     <>
-      <HeaderMain isLoggedIn={isLoggedIn} onOpen={handleClick} />
+      <HeaderMain handleClick={handleClick} isLoggedIn={isLoggedIn} />
       <SavedMovies
         movies={movies}
         setIsShortMovies={setIsShortMovies}

@@ -11,6 +11,7 @@
   text-align: center;
   color: #000000;
   border-radius: 2px;
+  height: 560px;
 }
 .register__entry {
   text-align: start;
@@ -31,7 +32,7 @@
 .register__button {
   margin: 131px 0 16px;
   padding: 0;
-  height: 45px;
+  min-height: 45px;
   border: none;
   font-size: 14px;
   line-height: 17px;
@@ -45,6 +46,10 @@
 }
 .register__button:hover {
   opacity: 0.8;
+}
+.register__button:disabled {
+  background: #e5e5e5;
+  color: #c2c2c2;
 }
 .register__signin {
   font-weight: 400;
@@ -92,15 +97,33 @@
   line-height: 17px;
   color: #a0a0a0;
   text-align: start;
+  height: 63px;
+  display: block;
+}
+
+.register__error-message {
+  position: absolute;
+  font-size: 12px;
+  color: #ee3465;
+  margin: 0;
+  top: 510px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .register__input-error {
+  color: #ee3465;
+}
+.register__error {
+  bottom: 20px;
   font-weight: 400;
+  position: relative;
   font-size: 10px;
   color: #ee3465;
-  box-sizing: border-box;
   margin: 0;
-  line-height: 12px;
   padding-top: 0;
+  line-height: 0.7;
+  display: block;
+  align-items: center;
 }
 .register__input:focus {
   border-bottom: 2px solid #2be080;

@@ -1,5 +1,5 @@
 .App {
-  text-align: center; 
+  text-align: center;
   max-width: 1280px;
   min-width: 320px;
   display: flex;
@@ -36,4 +36,3 @@
 .App-link {
   color: #61dafb;
 }
-

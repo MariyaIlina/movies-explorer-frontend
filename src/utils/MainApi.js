@@ -16,18 +16,38 @@ class MainApi {
     return Promise.reject(res.status);
   };
 
-  // getUserInfo(token){
-  //   return fetch(this.MAIN_URL + "/users/me", {
-  //     method: "GET",
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //       'Accept': "application/json",
-  //       "Content-Type": "application/json",
-  //     },
+  register(name, email, password) {
+    return fetch(this.MAIN_URL + "/signup", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password }),
+    }).then((res) => this.checkResponse(res));
+  }
 
-  //   }).then((res)=> this.checkResponse(res))
+  login(email, password) {
+    return fetch(this.MAIN_URL + "/signin", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    }).then((res) => this.checkResponse(res));
+  }
 
-  // }
+  checkToken(token) {
+    return fetch(this.MAIN_URL + "/users/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => this.checkResponse(res));
+  }
+
   getUserInfo = (token) => {
     return fetch(this._baseUrl + "/users/me", {
       headers: {
@@ -74,9 +94,6 @@ class MainApi {
   };
 
   deleteMovie = (movieId) => {
-    console.log("deleteMovie", movieId);
-    console.log("deleteMovie all", this.MAIN_URL + "/movies/" + movieId);
-    console.log("deleteMovie token", localStorage.getItem("token"));
 
     return fetch(this.MAIN_URL + "/movies/" + movieId, {
       method: "DELETE",
@@ -88,16 +105,7 @@ class MainApi {
       console.log("deleteMovie then", res);
       this.checkResponse(res);
     });
-    // return fetch(this.MAIN_URL + "/movies/" + movieId, {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     " Authorization": `Bearer ${localStorage.getItem("token")}`,
-    //   },
-    // }).then((res) => {
-    //   console.log("deleteMovie then", res);
-    //   this.checkResponse(res);
-    // });
+
   };
 
   getSavedMovies = (token) => {

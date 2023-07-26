@@ -43,8 +43,9 @@ function MoviesCardList({
   handleMovieSave,
   savedMovies,
   handleMovieDelete,
+  isShortMovies,
 }) {
-  // console.log('MoviesCardList handleMovieDelete', handleMovieDelete);
+
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -81,9 +82,6 @@ function MoviesCardList({
   };
 
   const currentUser = useContext(CurrentUserContext);
-  // const savedMovies = JSON.parse(localStorage.getItem("savedMovies"));
-  // console.log(currentUser.savedMovies);
-  // console.log('MoviesCardList=>', savedMovies)
   return (
     <>
       {isLoading ? (
@@ -99,25 +97,24 @@ function MoviesCardList({
             <>
               {movies.length > 0 ? (
                 <div className="moviesCardList">
-                  {movies.slice(0, visibleCards).map((movie) => (
-                    <MoviesCard
-                      handleMovieSave={handleMovieSave}
-                      handleMovieDelete={handleMovieDelete}
-                      trailerLink={movie.trailerLink}
-                      savedMovies={savedMovies}
-                      key={movie.id}
-                      movie={movie}
-                      title={movie.nameRU}
-                      time={formatTime(movie.duration)}
-                      src={`https://api.nomoreparties.co${movie.image.url}`}
-                      alt={movie.image.name}
-                      cardButton={
-                        location.pathname === "/movies"
-                          ? "moviesCard__like"
-                          : "moviesCard__remove"
-                      }
-                    />
-                  ))}
+                  {movies
+                    .filter((item) => !isShortMovies || item.duration <= 40)
+                    .slice(0, visibleCards)
+                    .map((movie) => (
+                      <MoviesCard
+                        handleMovieSave={handleMovieSave}
+                        handleMovieDelete={handleMovieDelete}
+                        trailerLink={movie.trailerLink}
+                        savedMovies={savedMovies}
+                        key={movie.id}
+                        movie={movie}
+                        title={movie.nameRU}
+                        time={formatTime(movie.duration)}
+                        src={`https://api.nomoreparties.co${movie.image.url}`}
+                        alt={movie.image.name}
+                        cardButton="moviesCard__like"
+                      />
+                    ))}
                 </div>
               ) : (
                 <p className="moviesCardList__notFound">Ничего не найдено</p>
@@ -130,30 +127,25 @@ function MoviesCardList({
             <>
               {savedMovies.length > 0 ? (
                 <div className="moviesCardList">
-                  {savedMovies.slice(0, visibleCards).map((movie) => (
-                    <MoviesCard
-                      handleMovieDelete={handleMovieDelete}
-                      key={movie._id}
-                      savedMovies={savedMovies}
-                      movie={movie}
-                      trailerLink={movie.trailerLink}
-                      title={movie.nameRU}
-                      time={formatTime(movie.duration)}
-                      src={movie.image}
-                      alt={movie.image}
-                      cardButton={
-                        location.pathname === "/movies"
-                          ? "moviesCard__like"
-                          : "moviesCard__remove"
-                      }
-                    />
-                  ))}
+                  {savedMovies
+                    .filter((item) => !isShortMovies || item.duration <= 40)
+                    .map((movie) => (
+                      <MoviesCard
+                        handleMovieDelete={handleMovieDelete}
+                        key={movie._id}
+                        savedMovies={savedMovies}
+                        movie={movie}
+                        trailerLink={movie.trailerLink}
+                        title={movie.nameRU}
+                        time={formatTime(movie.duration)}
+                        src={movie.image}
+                        alt={movie.image}
+                        cardButton="moviesCard__remove"
+                      />
+                    ))}
                 </div>
               ) : (
                 <p className="moviesCardList__notFound">Ничего не найдено</p>
-              )}{" "}
-              {savedMovies.length > visibleCards && (
-                <More handleLoadMore={handleLoadMore} />
               )}
             </>
           )}
