@@ -22,18 +22,16 @@ function Movies({
     }
   }, [currentUser])
   
-  useEffect(() => {
-    if(currentUser._id){
-      localStorage.setItem(`isShortMovies_${currentUser._id}`, JSON.stringify(isShortMovies));
-    }
-  }, [currentUser, isShortMovies])
-
+  const handlerIsShortMovies = (status) => {
+    setIsShortMovies(status)
+    localStorage.setItem(`isShortMovies_${currentUser._id}`, JSON.stringify(status));
+  }
   
   return (
     <>
       <SearchForm
         filterMovies={filterMovies}
-        setIsShortMovies={setIsShortMovies}
+        setIsShortMovies={handlerIsShortMovies}
         isShortMovies={isShortMovies}
         parent='Movies'
       />

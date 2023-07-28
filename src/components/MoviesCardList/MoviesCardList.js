@@ -58,7 +58,6 @@ function MoviesCardList({
   }, []);
 
   useEffect(() => {
-    console.log('searchMovies.currentUser', currentUser);
     if(currentUser._id){
       searchMovies.current = localStorage.getItem(`search${parent}_${currentUser._id}`);
     }

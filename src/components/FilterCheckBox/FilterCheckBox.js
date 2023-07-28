@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./FilterCheckBox.css";
 
 function FilterCheckBox({ setIsShortMovies, isShortMovies }) {
@@ -11,7 +11,7 @@ function FilterCheckBox({ setIsShortMovies, isShortMovies }) {
           type="checkbox"
           id="checkbox"
           checked={isShortMovies}
-          onChange={() => setIsShortMovies(prev => !prev)}
+          onChange={() => setIsShortMovies(!isShortMovies)}
         />
         <span className="filterCheckBox__inner">Короткометражки</span>
       </label>
