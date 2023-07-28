@@ -119,7 +119,7 @@ class MainApi {
   };
 }
 const mainApi = new MainApi({
-  baseUrl: "http://localhost:3001",
+  baseUrl: "https://api.praktikum.movies.nomoredomains.rocks",
 });
 
 export default mainApi;
