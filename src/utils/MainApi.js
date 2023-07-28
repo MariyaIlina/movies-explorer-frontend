@@ -1,9 +1,6 @@
 class MainApi {
   constructor(options) {
     this.MAIN_URL = "https://api.praktikum.movies.nomoredomains.rocks";
-    this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
-    this._token = options.token;
     // this.MAIN_URL = "http://localhost:3001";
     this.BASE_URL = "https://api.nomoreparties.co";
   }
@@ -12,7 +9,6 @@ class MainApi {
     if (res.ok) {
       return res.json();
     }
-
     return Promise.reject(res.status);
   };
 
@@ -49,7 +45,7 @@ class MainApi {
   }
 
   getUserInfo = (token) => {
-    return fetch(this._baseUrl + "/users/me", {
+    return fetch(this.MAIN_URL + "/users/me", {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -57,7 +53,7 @@ class MainApi {
   };
 
   updateUser = (data) => {
-    return fetch(this._baseUrl + "/users/me", {
+    return fetch(this.MAIN_URL + "/users/me", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -118,8 +114,6 @@ class MainApi {
     }).then((res) => this.checkResponse(res));
   };
 }
-const mainApi = new MainApi({
-  baseUrl: "https://api.praktikum.movies.nomoredomains.rocks",
-});
+const mainApi = new MainApi();
 
 export default mainApi;
