@@ -92,7 +92,7 @@ export default function Register({ isLoggedIn, register }) {
               errors.password && "register__input-error"
             }`}
             name="password"
-            value={values.password}
+            value={values.password || ""}
             type="password"
             onChange={handleChange}
             required

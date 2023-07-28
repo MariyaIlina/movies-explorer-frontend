@@ -17,11 +17,11 @@ function SearchForm({
   useEffect(() => {
     const searchMovies = localStorage.getItem(`search${parent}_${currentUser._id}`);
     
-    if(searchMovies && allMovies.length > 0){
+    if(parent === 'Movies' &&  searchMovies && allMovies.length > 0){
       setQuery(searchMovies);
       filterMovies(searchMovies, parent);
     }
-  }, [currentUser, allMovies])
+  }, [currentUser, allMovies, parent])
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -29,10 +29,9 @@ function SearchForm({
       setIsValid(false)
     } else {
       setIsValid(true)
-      if(parent === 'Movies'){
-        localStorage.setItem(`search${parent}_${currentUser._id}`, query);
-      }
-
+     
+    localStorage.setItem(`search${parent}_${currentUser._id}`, query);
+     
       filterMovies(query, parent);
     }
   };
@@ -47,7 +46,7 @@ function SearchForm({
             onChange={(e) => {
               setQuery(e.target.value);
             }}
-            value={query}
+            value={query || ""}
           />
           <button className="searchForm__button">
             <img src={icon} className="searchForm__img" alt="поиск" />

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { useLocation } from "react-router-dom";
@@ -44,7 +44,10 @@ function MoviesCardList({
   savedMovies,
   handleMovieDelete,
   isShortMovies,
+  parent
 }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  const searchMovies =  useRef(null);
 
   useEffect(() => {
     handleResize();
@@ -53,6 +56,13 @@ function MoviesCardList({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    console.log('searchMovies.currentUser', currentUser);
+    if(currentUser._id){
+      searchMovies.current = localStorage.getItem(`search${parent}_${currentUser._id}`);
+    }
+  }, [currentUser, movies, savedMovies, searchMovies.current])
 
   const location = useLocation();
   const [visibleCards, setVisibleCards] = useState(
@@ -81,7 +91,8 @@ function MoviesCardList({
     setVisibleCards((prevVisibleCards) => prevVisibleCards + loadMoreCards);
   };
 
-  const currentUser = useContext(CurrentUserContext);
+
+
   return (
     <>
       {isLoading ? (
@@ -116,9 +127,7 @@ function MoviesCardList({
                       />
                     ))}
                 </div>
-              ) : (
-                <p className="moviesCardList__notFound">Ничего не найдено</p>
-              )}
+              ) : searchMovies.current ? ( <p className="moviesCardList__notFound">Ничего не найдено</p>) : <></>}
               {movies.length > visibleCards && (
                 <More handleLoadMore={handleLoadMore} />
               )}
@@ -144,9 +153,7 @@ function MoviesCardList({
                       />
                     ))}
                 </div>
-              ) : (
-                <p className="moviesCardList__notFound">Ничего не найдено</p>
-              )}
+              ) : searchMovies.current ? ( <p className="moviesCardList__notFound">Ничего не найдено</p>) : <></>}
             </>
           )}
         </>

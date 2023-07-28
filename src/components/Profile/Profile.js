@@ -17,6 +17,13 @@ function Profile({ onUpdateUser, logOut }) {
     }
   }, [currentUser]);
 
+  useEffect(() => {
+    if(isError.updateUser === 400){
+       resetForm({name: currentUser.name, email: currentUser.email})
+    }
+  }, [isError.updateUser, currentUser])
+  
+
   function handleNameChange(e) {
     const regExpName = /^[A-Za-zА-Яа-яЁё\s-]+$/;
     const value = e.target.value;
@@ -42,6 +49,7 @@ function Profile({ onUpdateUser, logOut }) {
     <div className="profile">
       <p className="profile__entry">Привет, {values.name}!</p>
       <form onSubmit={handleSubmit} className="profile__form">
+        <div className="profile__error_box">
         <div className="profile__box">
           <label className="profile__label">Имя</label>
           <input
@@ -53,7 +61,7 @@ function Profile({ onUpdateUser, logOut }) {
             minLength="2"
             maxLength="40"
             id="profile-name"
-            value={values.name}
+            value={values.name || ""}
             onChange={handleNameChange}
             disabled={!editingMode}
             required
@@ -62,7 +70,9 @@ function Profile({ onUpdateUser, logOut }) {
         {errors.name && (
           <span className="profile__input_error">{errors.name}</span>
         )}
+        </div>
         <div className="profile__line"></div>
+        <div className="profile__error_box">
         <div className="profile__box">
           <label className="profile__label">E-mail</label>
           <input
@@ -73,7 +83,7 @@ function Profile({ onUpdateUser, logOut }) {
             required
             type="email"
             id="profile-email"
-            value={values.email}
+            value={values.email || ""}
             onChange={handleChange}
             disabled={!editingMode}
           />
@@ -89,6 +99,7 @@ function Profile({ onUpdateUser, logOut }) {
               : "Пользователь с таким email уже сществует"}
           </p>
         )}
+        </div>
         {isError.updateUserSuccessfully && (
           <p className="profile__input-successfully">
             Профиль успешно обновлен

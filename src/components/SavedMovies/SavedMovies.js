@@ -37,6 +37,7 @@ function SavedMovies({
         parent='SavedMovies'
       />
       <MoviesCardList
+        parent='SavedMovies'
         movies={movies}
         isShortMovies={isShortMovies}
         handleMovieDelete={handleMovieDelete}

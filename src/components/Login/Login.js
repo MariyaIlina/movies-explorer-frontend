@@ -39,7 +39,7 @@ export default function Login({ login, isLoggedIn }) {
             <input
               className={`login__input ${errors.email && "login__input-error"}`}
               name="email"
-              value={values.email}
+            value={values.email || ''}
               type="email"
               onChange={handleChange}
               required

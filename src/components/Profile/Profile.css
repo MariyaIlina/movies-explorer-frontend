@@ -6,7 +6,6 @@
   line-height: 22px;
   color: #000000;
   border-radius: 2px;
-  /* min-height: 626px; */
 }
 .profile__entry {
   padding-top: 75px;
@@ -53,14 +52,18 @@
   margin: 0;
   line-height: 1;
   padding-top: 0;
-  position: relative;
-  display: block;
-  align-items: center;
+  text-align: left;
+  position: absolute;
+  top: 17px;
+  left: 0;
 }
 
 .profile__box {
   display: flex;
   flex-direction: row;
+}
+.profile__error_box {
+  position: relative;
 }
 .profile__line {
   max-width: 410px;
@@ -109,10 +112,10 @@
 }
 .profile__input-successfully {
   position: absolute;
-  top: 500px;
+  top: 520px;
   color: #13b323;
   transform: translateX(-50%);
-  left: 50%;
+  left: 50%;font-size: 12px;
 }
 .profile__save {
   margin: 0;

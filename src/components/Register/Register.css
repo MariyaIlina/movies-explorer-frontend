@@ -90,6 +90,7 @@
   height: 30px;
 }
 .register__label {
+  position: relative;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -114,16 +115,14 @@
   color: #ee3465;
 }
 .register__error {
-  bottom: 20px;
+  position: absolute;
+  top: 50px;
+  left: 0;
   font-weight: 400;
-  position: relative;
   font-size: 10px;
   color: #ee3465;
-  margin: 0;
-  padding-top: 0;
   line-height: 0.7;
-  display: block;
-  align-items: center;
+  align-items: left;
 }
 .register__input:focus {
   border-bottom: 2px solid #2be080;
