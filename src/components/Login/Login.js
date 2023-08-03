@@ -42,6 +42,7 @@ export default function Login({ login, isLoggedIn }) {
             value={values.email || ''}
               type="email"
               onChange={handleChange}
+              pattern="^\S+@\S+\.\S+$"
               required
             />
             {errors.email && (

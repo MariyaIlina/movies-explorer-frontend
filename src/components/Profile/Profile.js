@@ -82,6 +82,7 @@ function Profile({ onUpdateUser, logOut }) {
             name="email"
             required
             type="email"
+            pattern="^\S+@\S+\.\S+$"
             id="profile-email"
             value={values.email || ""}
             onChange={handleChange}

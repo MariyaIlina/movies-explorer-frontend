@@ -76,6 +76,7 @@ export default function Register({ isLoggedIn, register }) {
               errors.email && "register__input-error"
             }`}
             name="email"
+            pattern="^\S+@\S+\.\S+$"
             value={values.email}
             type="email"
             onChange={handleChange}
