@@ -10,6 +10,7 @@ function Profile({ onUpdateUser, logOut }) {
     useFormWithValidation();
 
   const [editingMode, setEditingMode] = useState(false);
+  const [isDiffer, setIsDiffer] = useState(false);
 
   useEffect(() => {
     if (currentUser?.name) {
@@ -23,6 +24,13 @@ function Profile({ onUpdateUser, logOut }) {
     }
   }, [isError.updateUser, currentUser])
   
+  useEffect(() => {
+    if(values.name !== currentUser.name || values.email !== currentUser.email){
+      setIsDiffer(true)
+    } else {
+      setIsDiffer(false)
+    }
+  }, [values, currentUser]) 
 
   function handleNameChange(e) {
     const regExpName = /^[A-Za-zА-Яа-яЁё\s-]+$/;
@@ -108,7 +116,7 @@ function Profile({ onUpdateUser, logOut }) {
         )}
         {editingMode ? (
           <>
-            <button type="submit" disabled={!isValid} className="profile__save">
+            <button type="submit" disabled={!(isValid && isDiffer)} className="profile__save">
               Сохранить
             </button>
           </>
