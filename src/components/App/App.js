@@ -304,10 +304,26 @@ function App() {
               />
             }
           />
-
-          <Route path="/signup" element={<Register register={register} />} />
-          <Route path="/signin" element={<Login login={login} />} />
-
+          <Route
+            path="/signup"
+            element={
+              <ProtectedRoute
+                isLoggedIn={!isLoggedIn}
+                element={Register}
+                register={register}
+              />
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <ProtectedRoute
+                isLoggedIn={!isLoggedIn}
+                element={Login}
+                login={login}
+              />
+            }
+          />
           <Route
             path="/"
             element={
@@ -317,6 +333,12 @@ function App() {
                 toggleMenu={toggleMenu}
                 handleClick={handleClick}
               />
+            }
+          />
+          <Route
+            path="/*"
+            element={
+              <MainPage isLoggedIn={isLoggedIn} handleClick={handleClick} />
             }
           />
           <Route path="*" element={<NotFound />} />

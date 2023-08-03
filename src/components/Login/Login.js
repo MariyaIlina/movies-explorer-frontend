@@ -22,12 +22,6 @@ export default function Login({ login, isLoggedIn }) {
     });
   };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/movies");
-    }
-  }, [isLoggedIn, navigate]);
-
   return (
     <div className="login">
       <HeaderSign />
