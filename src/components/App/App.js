@@ -319,12 +319,6 @@ function App() {
               />
             }
           />
-          <Route
-            path="/*"
-            element={
-              <MainPage isLoggedIn={isLoggedIn} handleClick={handleClick} />
-            }
-          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </CurrentUserContext.Provider>
