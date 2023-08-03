@@ -5,30 +5,9 @@ import { useLocation } from "react-router-dom";
 import More from "../../components/More/More";
 import Preloader from "../Preloader/Preloader";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { SHORTMOVIE } from "../../utils/constatns";
+import { DEVICE_PARAMS } from "../../utils/constatns";
 
-const DEVICE_PARAMS = {
-  desktop: {
-    width: 1280,
-    cards: {
-      total: 12,
-      more: 3,
-    },
-  },
-  tablet: {
-    width: 768,
-    cards: {
-      total: 8,
-      more: 2,
-    },
-  },
-  mobile: {
-    width: 500,
-    cards: {
-      total: 5,
-      more: 2,
-    },
-  },
-};
 
 function formatTime(minutes) {
   const hours = Math.floor(minutes / 60);
@@ -108,7 +87,9 @@ function MoviesCardList({
               {movies.length > 0 ? (
                 <div className="moviesCardList">
                   {movies
-                    .filter((item) => !isShortMovies || item.duration <= 40)
+                    .filter(
+                      (item) => !isShortMovies || item.duration <= SHORTMOVIE
+                    )
                     .slice(0, visibleCards)
                     .map((movie) => (
                       <MoviesCard
@@ -126,7 +107,11 @@ function MoviesCardList({
                       />
                     ))}
                 </div>
-              ) : searchMovies.current ? ( <p className="moviesCardList__notFound">Ничего не найдено</p>) : <></>}
+              ) : searchMovies.current ? (
+                <p className="moviesCardList__notFound">Ничего не найдено</p>
+              ) : (
+                <></>
+              )}
               {movies.length > visibleCards && (
                 <More handleLoadMore={handleLoadMore} />
               )}
@@ -152,7 +137,11 @@ function MoviesCardList({
                       />
                     ))}
                 </div>
-              ) : searchMovies.current ? ( <p className="moviesCardList__notFound">Ничего не найдено</p>) : <></>}
+              ) : searchMovies.current ? (
+                <p className="moviesCardList__notFound">Ничего не найдено</p>
+              ) : (
+                <></>
+              )}
             </>
           )}
         </>

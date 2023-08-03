@@ -1,7 +1,7 @@
 class MainApi {
   constructor(options) {
-    // this.MAIN_URL = "https://api.praktikum.movies.nomoredomains.rocks";
-    this.MAIN_URL = "http://localhost:3001";
+    this.MAIN_URL = "https://api.praktikum.movies.nomoredomains.rocks";
+    // this.MAIN_URL = "http://localhost:3000";
     this.BASE_URL = "https://api.nomoreparties.co";
   }
 
