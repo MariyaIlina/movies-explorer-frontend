@@ -39,8 +39,10 @@ function App() {
     const token = localStorage.getItem("token");
     if (currentUser?._id) {
       setIsLoading(true);
-      Promise.all([getSavedMovies(token), moviesApi.getMovies(token)])
+      Promise.all([getSavedMovies(token), getMovies()])
         .then(([saved, movies]) => {
+          localStorage.setItem( `Movies`, JSON.stringify(movies));
+          
           const mySaved = saved.filter(
             (movie) => movie.owner === currentUser._id
           );
@@ -69,17 +71,24 @@ function App() {
   useEffect(() => {
     if (currentUser._id) {
       localStorage.setItem(
-        `savedMovies_${currentUser._id}`,
+        `savedMovies`,
         JSON.stringify(savedMovies)
       );
       setFilteredSavedMovies(savedMovies);
     }
   }, [currentUser, savedMovies]);
 
+  const getMovies = () => {
+    const storageMovies = localStorage.getItem( `Movies`);
+    if (storageMovies && JSON.parse(storageMovies).length > 0) {
+      return Promise.resolve(JSON.parse(storageMovies));
+    } else {
+      return moviesApi.getMovies();
+    }
+  }
+
   function getSavedMovies(token) {
-    const storageSavedMovies = localStorage.getItem(
-      `savedMovies_${currentUser._id}`
-    );
+    const storageSavedMovies = localStorage.getItem( `savedMovies`);
     if (storageSavedMovies && JSON.parse(storageSavedMovies).length > 0) {
       return Promise.resolve(JSON.parse(storageSavedMovies));
     } else {
@@ -325,22 +334,16 @@ function App() {
             }
           />
           <Route
-            path="/"
+            index
             element={
               <MainPage
-                isLoggedIn={isLoggedIn}
-                menuActive={menuActive}
-                toggleMenu={toggleMenu}
-                handleClick={handleClick}
+              isLoggedIn={isLoggedIn}
+              menuActive={menuActive}
+              toggleMenu={toggleMenu}
+              handleClick={handleClick}
               />
             }
-          />
-          <Route
-            path="/*"
-            element={
-              <MainPage isLoggedIn={isLoggedIn} handleClick={handleClick} />
-            }
-          />
+            />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </CurrentUserContext.Provider>
