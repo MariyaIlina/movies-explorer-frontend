@@ -248,7 +248,7 @@ function App() {
     setMovies([]);
     setFilteredSavedMovies([]);
     setFilteredMovies([]);
-    localStorage.removeItem("token");
+    localStorage.clear();
     navigate("/");
   }
   return (
