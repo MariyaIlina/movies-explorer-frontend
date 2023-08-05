@@ -38,7 +38,7 @@ function MoviesCardList({
 
   useEffect(() => {
     if(currentUser._id){
-      searchMovies.current = localStorage.getItem(`search${parent}_${currentUser._id}`);
+      searchMovies.current = localStorage.getItem(`search${parent}`);
     }
   }, [currentUser, movies, savedMovies, searchMovies.current])
 
@@ -69,6 +69,9 @@ function MoviesCardList({
     setVisibleCards((prevVisibleCards) => prevVisibleCards + loadMoreCards);
   };
 
+  const isMovies = location.pathname === "/movies";
+  const currentMovies = isMovies ? movies : savedMovies;
+  const totalMovies = currentMovies.filter( (item) => !isShortMovies || item.duration <= SHORTMOVIE );
 
 
   return (
@@ -84,12 +87,9 @@ function MoviesCardList({
         <>
           {location.pathname === "/movies" ? (
             <>
-              {movies.length > 0 ? (
+              {totalMovies.length > 0 ? (
                 <div className="moviesCardList">
-                  {movies
-                    .filter(
-                      (item) => !isShortMovies || item.duration <= SHORTMOVIE
-                    )
+                  {totalMovies
                     .slice(0, visibleCards)
                     .map((movie) => (
                       <MoviesCard
@@ -112,16 +112,15 @@ function MoviesCardList({
               ) : (
                 <></>
               )}
-              {movies.length > visibleCards && (
+              {totalMovies.length > visibleCards && (
                 <More handleLoadMore={handleLoadMore} />
               )}
             </>
           ) : (
             <>
-              {savedMovies.length > 0 ? (
+              {totalMovies.length > 0 ? (
                 <div className="moviesCardList">
-                  {savedMovies
-                    .filter((item) => !isShortMovies || item.duration <= 40)
+                  {totalMovies
                     .map((movie) => (
                       <MoviesCard
                         handleMovieDelete={handleMovieDelete}
