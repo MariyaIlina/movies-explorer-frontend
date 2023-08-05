@@ -250,16 +250,28 @@ function App() {
       });
   }
 
-  function logOut() {
-    setIsLoggedIn(false);
-    setCurrentUser({});
-    setSavedMovies([]);
-    setMovies([]);
-    setFilteredSavedMovies([]);
-    setFilteredMovies([]);
-    localStorage.clear();
-    navigate("/");
+function logOut() {
+    localStorage.clear(); // удаляем все localStorage
+
+    // Первый вариант удаления состояний
+    // window.location.replace(window.location.origin); // Переходим на начальную страницу обнуляя все useState
+    // Или 
+    setIsLoggedIn(true); // обнуляю состояние  'Пользователь авторизован'
+    setMenuActive(false); // обнуляю состояние  'Меню активно'
+    setIsLoading(false); // обнуляю состояние  'Идёт загрузка данных'
+    setIsError([]) // обнуляю состояние  'Ошибки форм'
+
+    setCurrentUser({}); // обнуляю состояние  'Авторизованный пользователь'
+
+    setMovies([]) // обнуляю состояние  'Все фильмы'
+    setFilteredMovies([]) // обнуляю состояние  'Отфильтрованные фильмы'
+    setSavedMovies([]) // обнуляю состояние  'Сохранённые фильмы'
+    setFilteredSavedMovies([]) // обнуляю состояние  'Сохранённые отфильтрованные фильмы'
+    // остальные состояния обнуляются при демонтировании компонентов
+
+    navigate("/"); // переходим на главный экран
   }
+
   return (
     <div>
       <CurrentUserContext.Provider
