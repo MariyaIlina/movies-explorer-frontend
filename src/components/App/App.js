@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import NotFound from "../NotFound/NotFound";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
@@ -15,6 +15,7 @@ import mainApi from "../../utils/MainApi";
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentUser, setCurrentUser] = useState({});
   const [menuActive, setMenuActive] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -78,6 +79,12 @@ function App() {
     }
   }, [currentUser, savedMovies]);
 
+  useEffect(() => {
+    if( location.pathname === '/saved-movies'){
+      setFilteredSavedMovies(savedMovies);
+    }
+  }, [location])
+  
   const getMovies = () => {
     const storageMovies = localStorage.getItem( `Movies`);
     if (storageMovies && JSON.parse(storageMovies).length > 0) {
@@ -96,12 +103,18 @@ function App() {
     }
   }
   function checkToken(token) {
+    const pathname = location.pathname;
     mainApi
       .checkToken(token)
       .then(({ user }) => {
         setIsLoggedIn(true);
         setCurrentUser(user);
-        navigate("/movies", { replace: true });
+
+        if(pathname === "/signup" ||  pathname === "/signin"){
+          navigate("/movies", { replace: true });
+        } else {
+          navigate(pathname, { replace: true });
+        }
       })
       .catch((err) => {
         createError("auth", err);

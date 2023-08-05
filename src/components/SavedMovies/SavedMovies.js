@@ -1,32 +1,21 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "../SavedMovies/SavedMovies.css";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function SavedMovies({
-  movies,savedMovies,
+  movies,
+  savedMovies,
   filterMovies,
   handleMovieDelete,
   isLoading,
 }) {
   const [isShortMovies, setIsShortMovies] = useState(false);
-  const {currentUser} = useContext(CurrentUserContext);
-
-  useEffect(() => {
-    if(currentUser._id){
-      const isShortMovies = localStorage.getItem(`isShortSavedMovies_${currentUser._id}`);
-      if(isShortMovies){
-        setIsShortMovies(JSON.parse(isShortMovies))
-      }
-    }
-  }, [currentUser])
   
   const handlerIsShortMovies = (status) => {
     setIsShortMovies(status)
-    localStorage.setItem(`isShortSavedMovies_${currentUser._id}`, JSON.stringify(status));
   }
-  
+ 
   return (
     <>
       <SearchForm

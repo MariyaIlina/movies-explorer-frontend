@@ -15,7 +15,7 @@ function SearchForm({
   const [isValid, setIsValid] = useState(true);
   
   useEffect(() => {
-    const searchMovies = localStorage.getItem(`search${parent}_${currentUser._id}`);
+    const searchMovies = localStorage.getItem(`search${parent}`);
     
     if(parent === 'Movies' &&  searchMovies && allMovies.length > 0){
       setQuery(searchMovies);
@@ -30,7 +30,7 @@ function SearchForm({
     } else {
       setIsValid(true)
      
-    localStorage.setItem(`search${parent}_${currentUser._id}`, query);
+    localStorage.setItem(`search${parent}`, query);
      
       filterMovies(query, parent);
     }

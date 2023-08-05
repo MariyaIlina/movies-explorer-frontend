@@ -15,7 +15,7 @@ function Movies({
 
   useEffect(() => {
     if(currentUser._id){
-      const isShortdMovies = localStorage.getItem(`isShortMovies_${currentUser._id}`);
+      const isShortdMovies = localStorage.getItem(`isShortMovies`);
       if(isShortdMovies){
         setIsShortMovies(JSON.parse(isShortdMovies))
       }
@@ -24,7 +24,7 @@ function Movies({
   
   const handlerIsShortMovies = (status) => {
     setIsShortMovies(status)
-    localStorage.setItem(`isShortMovies_${currentUser._id}`, JSON.stringify(status));
+    localStorage.setItem(`isShortMovies`, JSON.stringify(status));
   }
   
   return (
