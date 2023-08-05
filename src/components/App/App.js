@@ -17,7 +17,7 @@ function App() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
   const [menuActive, setMenuActive] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]); //все фильмы
   const [filteredMovies, setFilteredMovies] = useState([]); //фильмы найденные по поиску
@@ -101,6 +101,7 @@ function App() {
       .then(({ user }) => {
         setIsLoggedIn(true);
         setCurrentUser(user);
+        navigate("/movies", { replace: true });
       })
       .catch((err) => {
         createError("auth", err);
@@ -114,8 +115,7 @@ function App() {
     mainApi
       .register(name, email, password)
       .then((data) => {
-        login({ name, email, password });
-        setIsLoggedIn(true);
+        login({ email, password });
         setIsLoading(false);
       })
       .catch((err) => {
@@ -134,7 +134,6 @@ function App() {
         checkToken(data.token);
 
         setIsLoggedIn(true);
-        navigate("/movies", { replace: true });
         setIsLoading(false);
       })
       .catch((err) => {
@@ -256,7 +255,7 @@ function logOut() {
     // Первый вариант удаления состояний
     // window.location.replace(window.location.origin); // Переходим на начальную страницу обнуляя все useState
     // Или 
-    setIsLoggedIn(true); // обнуляю состояние  'Пользователь авторизован'
+    setIsLoggedIn(false); // обнуляю состояние  'Пользователь авторизован'
     setMenuActive(false); // обнуляю состояние  'Меню активно'
     setIsLoading(false); // обнуляю состояние  'Идёт загрузка данных'
     setIsError([]) // обнуляю состояние  'Ошибки форм'
