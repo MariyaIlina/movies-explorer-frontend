@@ -1,76 +1,88 @@
-import { useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Header from "../Header/Header";
+import HeaderSign from "../HeaderSign/HeaderSign";
 import "./Login.css";
+import { useFormWithValidation } from "../Validate/Validate";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function Login({ onLogin, isLoggedIn }) {
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
+export default function Login({ login, isLoggedIn }) {
+  const { isError } = useContext(CurrentUserContext);
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
+
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setUserData((userData) => ({
-      ...userData,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!userData.email || !userData.password) {
+    if (!isValid) {
       return;
     }
-    onLogin(userData.email, userData.password);
+    login({
+      email: values.email,
+      password: values.password,
+    });
   };
 
-  if (isLoggedIn) {
-    return navigate("/");
-  }
   return (
     <div className="login">
-      <Header />
+      <HeaderSign />
       <form className="login__form" onSubmit={handleSubmit}>
         <p className="login__entry">Рады видеть!</p>
-        <label className="login__label">
-          {"E-mail"}
-          <input
-            className="login__input"
-            name={"email"}
-            value={userData.email}
-            type={"email"}
-            onChange={handleChange}
-          />
-          <p className="login__error">
-            <span id={"login-email-error"}></span>
+        <div className="login__block">
+          <label className="login__label">
+            E-mail
+            <input
+              className={`login__input ${errors.email && "login__input-error"}`}
+              name="email"
+            value={values.email || ''}
+              type="email"
+              onChange={handleChange}
+              pattern="^\S+@\S+\.\S+$"
+              required
+            />
+            {errors.email && (
+              <span className="login__error">{errors.email}</span>
+            )}
+          </label>
+          <label className="login__label">
+            Пароль
+            <input
+              className={`login__input ${
+                errors.password && "login__input-error"
+              }`}
+              name="password"
+              value={values.password || ""}
+              type="password"
+              onChange={handleChange}
+              required
+              minLength="8"
+            />
+            {errors.password && (
+              <span className="login__error">{errors.password}</span>
+            )}
+          </label>
+        </div>
+        {isError.login && (
+          <p className="login__error-message">
+            {isError.login === 401
+              ? "Вы ввели неправильный логин или пароль."
+              : "При авторизации произошла ошибка."}
           </p>
-        </label>
-        <label className="login__label">
-          {"Пароль"}
-          <input
-            className="login__input"
-            name={"password"}
-            value={userData.password}
-            type={"password"}
-            onChange={handleChange}
-          />
-          <p className="login__error">
-            <span id={"login-password-error"}></span>
-          </p>
-        </label>
-        <button type="submit" onSubmit={handleSubmit} className="login__button">
+        )}
+        <button
+          type="submit"
+          disabled={!isValid}
+          className="login__button"
+          onSubmit={handleSubmit}
+        >
           Войти
         </button>
+        <div className="login__signin">
+          <p className="login__text">Ещё не зарегистрированы? </p>
+          <Link to="/signup" className="login__link">
+            Регистрация
+          </Link>
+        </div>
       </form>
-      <div className="login__signin">
-        <p className="login__text">Ещё не зарегистрированы? </p>
-        <Link to="/signup" className="login__link">
-          Регистрация
-        </Link>
-      </div>
     </div>
   );
 }

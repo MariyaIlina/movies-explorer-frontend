@@ -25,18 +25,20 @@ function AboutProject() {
       </div>
 
       <table>
-        <tr>
-          <th className="aboutProject__tab aboutProject__tab-back">
-            1 неделя
-          </th>
-          <th className="aboutProject__tab aboutProject__tab-front">
-            4 недели
-          </th>
-        </tr>
-        <tr>
-          <td className="aboutProject__label">Back-end</td>
-          <td className="aboutProject__label">Front-end</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th className="aboutProject__tab aboutProject__tab-back">
+              1 неделя
+            </th>
+            <th className="aboutProject__tab aboutProject__tab-front">
+              4 недели
+            </th>
+          </tr>
+          <tr>
+            <td className="aboutProject__label">Back-end</td>
+            <td className="aboutProject__label">Front-end</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
