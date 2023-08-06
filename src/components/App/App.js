@@ -42,15 +42,25 @@ function App() {
       setIsLoading(true);
       Promise.all([getSavedMovies(token), getMovies()])
         .then(([saved, movies]) => {
-          localStorage.setItem( `Movies`, JSON.stringify(movies));
+
+         const clearMovies = movies.map(item => {
+            delete item._id;
+            return item;
+          })
+          
+          localStorage.setItem( `Movies`, JSON.stringify(clearMovies));
           
           const mySaved = saved.filter(
             (movie) => movie.owner === currentUser._id
-          );
-          let newMovies = movies;
+            );
+          
+
+          let newMovies = clearMovies;
+
           if (mySaved.length > 0) {
-            newMovies = movies.map((movie) => {
-              const ifSaved = saved.find((save) => save.movieId === movie.id);
+            newMovies = clearMovies.map((movie) => {
+              const ifSaved = mySaved.find((save) => save.movieId === movie.id);
+              
               if (ifSaved) {
                 movie._id = ifSaved._id;
               }
